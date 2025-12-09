@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/sneaker")
-public class ProductServlet extends HttpServlet {
+public class ShoeServlet extends HttpServlet {
 
     private static final double UNIT_PRICE = 120.00;
 
