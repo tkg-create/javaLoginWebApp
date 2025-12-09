@@ -46,9 +46,6 @@ public class CustomerDAO implements DAO<Customer>
         } catch (SQLException ex) {
             System.err.println(ex.toString());
             return null;
-        } catch (Exception ex) {
-            System.err.println(ex.toString());
-            return null;
         }
     }
     
