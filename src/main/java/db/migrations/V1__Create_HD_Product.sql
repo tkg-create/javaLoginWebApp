@@ -4,5 +4,5 @@ CREATE TABLE HD_Product(
     Product_Description VARCHAR(20) NOT NULL,
     Product_Color VARCHAR(20) NOT NULL,
     Product_Size VARCHAR(20) NOT NULL,
-    Product_Price int NOT NULL
+    Product_Price VARCHAR(20) NOT NULL
 );
