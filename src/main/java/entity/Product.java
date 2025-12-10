@@ -8,6 +8,7 @@ package entity;
  *
  * @author Gokhan
  */
+
 public class Product
 {
     private int ID;
@@ -53,6 +54,26 @@ public class Product
 
     @Override
     public String toString() {
-        return "Customer{" + "ID=" + ID + ", Name=" + Name + ", Description=" + Description + ", Color=" + Color + ", Size=" + Size + ", Price=" + Price + '}';
+        return "Product{" + "ID=" + ID + ", Name=" + Name + ", Description=" + Description + ", Color=" + Color + ", Size=" + Size + ", Price=" + Price + '}';
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
+    public void setSize(String Size) {
+        this.Size = Size;
+    }
+
+    public void setPrice(double Price) {
+        this.Price = Price;
     }
 }
