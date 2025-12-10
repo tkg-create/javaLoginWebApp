@@ -82,12 +82,11 @@ public class CustomerDAO implements DAO<Customer>
     {
         DB db = DB.getInstance();
         try {
-            String sql = "INSERT INTO HD_Customer(Customer_ID, Customer_First_Name, Customer_Last_Name, Customer_Favorite_Meal) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO HD_Customer(Customer_First_Name, Customer_Last_Name, Customer_Favorite_Meal) VALUES (?, ?, ?)";
             PreparedStatement stmt = db.getPreparedStatement(sql);
-            stmt.setInt(1, customer.getID());
-            stmt.setString(2, customer.getFirstName());
-            stmt.setString(3, customer.getLastName());
-            stmt.setString(4, customer.getFavoriteMeal());
+            stmt.setString(1, customer.getFirstName());
+            stmt.setString(2, customer.getLastName());
+            stmt.setString(3, customer.getFavoriteMeal());
             int rowInserted = stmt.executeUpdate();
             if (rowInserted > 0) {
                 System.out.println("A new customer was inserted successfully!");

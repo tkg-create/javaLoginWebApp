@@ -51,12 +51,14 @@ public class CustomerServlet extends HttpServlet {
         if (firstName != null && lastName != null && favoriteMeal != null
                 && !firstName.isBlank() && !lastName.isBlank()) {
 
-            Customer c = new Customer ();
-            c.setFirstName(firstName);
-            c.setLastName(lastName);
-            c.setFavoriteMeal(favoriteMeal);
+            Customer c = new Customer(
+                    0,              // ID placeholder (DB will handle it)
+                    firstName,
+                    lastName,
+                    favoriteMeal
+            );
 
-            customerDAO.insert(c);    // uses your existing DAO
+            customerDAO.insert(c);
         }
 
         // Redirect to avoid form resubmission

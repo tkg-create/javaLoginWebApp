@@ -1,8 +1,8 @@
-CREATE TABLE HD_Product (
-    Order_ID int NOT NULL PRIMARY KEY,
-    Order_Price int NOT NULL,
-    Order_Date_TIME TIMESTAMP NOT NULL,
-    Item_Name VARCHAR(20) NOT NULL,
-    Customer_ID int NOT NULL,
-    FOREIGN KEY (Customer_ID) REFERENCES HD_Customer(Customer_ID)
+CREATE TABLE HD_Product(
+    Product_ID int NOT NULL PRIMARY KEY,
+    Product_Name VARCHAR(20) NOT NULL,
+    Product_Description VARCHAR(20) NOT NULL,
+    Product_Color VARCHAR(20) NOT NULL,
+    Product_Size VARCHAR(20) NOT NULL,
+    Product_Price decimal NOT NULL
 );
