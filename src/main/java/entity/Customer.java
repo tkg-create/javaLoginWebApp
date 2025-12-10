@@ -23,6 +23,9 @@ public class Customer
         this.favoriteMeal = favoriteMeal;
     }
 
+    public Customer() {
+    }
+
     public int getID() {
         return ID;
     }
