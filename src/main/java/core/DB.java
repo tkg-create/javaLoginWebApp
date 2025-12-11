@@ -15,7 +15,7 @@ import java.sql.*;
  */
 public class DB {
     private static final String DB_URL = "jdbc:derby:shoestoredb;create=true;user=shoestoredb;password=shoestoredb";
-    private static final String MIGRATION_DIR = "classpath:db/migrations";
+    private static final String MIGRATION_DIR = "classpath:db/migration";
     private static DB instance = null;
     private final Connection mConnection;
     
@@ -73,7 +73,7 @@ public class DB {
     }
     
     /**
-     * This migrateDB method is used to create tables under db.migrations package
+     * This migrateDB method is used to create tables under db.migration package
      * if they are not created before
      * We use FlyWay class from flyway library to perform the migration in our code
      */

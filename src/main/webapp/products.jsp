@@ -28,11 +28,11 @@
     <c:forEach var="prod" items="${products}">
         <tr>
             <td>${prod.ID}</td>
-            <td>${prod.Name}</td>
-            <td>${prod.Description}</td>
-            <td>${prod.Color}</td>
-            <td>${prod.Size}</td>
-            <td>${prod.Price}</td>
+            <td>${prod.name}</td>
+            <td>${prod.description}</td>
+            <td>${prod.color}</td>
+            <td>${prod.size}</td>
+            <td>${prod.price}</td>
         </tr>
     </c:forEach>
 </table>
