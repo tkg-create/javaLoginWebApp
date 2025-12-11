@@ -57,6 +57,10 @@ public class Product
         return "Product{" + "ID=" + ID + ", Name=" + Name + ", Description=" + Description + ", Color=" + Color + ", Size=" + Size + ", Price=" + Price + '}';
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public void setName(String Name) {
         this.Name = Name;
     }

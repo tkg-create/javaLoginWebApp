@@ -18,17 +18,20 @@ import java.util.Optional;
  *
  * @author Gokhan
  */
-public class ProductDAO implements DAO<Product>
-{
+public class ProductDAO implements DAO<Product> {
     public ProductDAO() {
 
     }
+
     List<Product> products;
+
     /**
      * Get a single product entity as a product object
+     *
      * @param id
      * @return
      */
+
     @Override
     public Optional<Product> get(int id) {
         DB db = DB.getInstance();
@@ -51,6 +54,7 @@ public class ProductDAO implements DAO<Product>
 
     /**
      * Get all product entities as a List
+     *
      * @return
      */
     @Override
@@ -75,13 +79,16 @@ public class ProductDAO implements DAO<Product>
 
     /**
      * Insert a product object into product table
+     *
      * @param product
      */
     @Override
-    public void insert(Product product)
-    {
+    public void insert(Product product) {
         DB db = DB.getInstance();
         try {
+            int nextId = getNextId();
+            product.setID(nextId);
+
             String sql = "INSERT INTO HD_Product(Product_ID, Product_Name, Product_Description, Product_Color, Product_Size, Product_Price) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = db.getPreparedStatement(sql);
             stmt.setInt(1, product.getID());
@@ -101,6 +108,7 @@ public class ProductDAO implements DAO<Product>
 
     /**
      * Update a product entity in database if it exists using a product object
+     *
      * @param product
      */
     @Override
@@ -126,6 +134,7 @@ public class ProductDAO implements DAO<Product>
 
     /**
      * Delete a product from product table if the entity exists
+     *
      * @param product
      */
     @Override
@@ -146,6 +155,7 @@ public class ProductDAO implements DAO<Product>
 
     /**
      * Get all column names in a list array
+     *
      * @return
      */
     @Override
@@ -166,6 +176,25 @@ public class ProductDAO implements DAO<Product>
         } catch (SQLException ex) {
             System.err.println(ex.toString());
             return null;
+        }
+
+    }
+
+    private int getNextId() {
+        DB db = DB.getInstance();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT MAX(Product_ID) AS max_id FROM HD_Product";
+            rs = db.executeQuery(sql);
+            if (rs.next()) {
+                int maxId = rs.getInt("max_id");
+                return maxId + 1;
+            } else {
+                return 1; // table empty, start from 1
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.toString());
+            return 1; // fallback
         }
     }
 }
