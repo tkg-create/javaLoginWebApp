@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,30 +15,61 @@
     </style>
 </head>
 <body>
-<h1>Classic Runner Sneaker</h1>
+<h1>Sneaker Product</h1>
+
+<!-- Product ID Search -->
+<form action="${pageContext.request.contextPath}/sneaker" method="get" style="margin-bottom:1rem;">
+    <label for="productId">Enter Product ID:</label>
+    <input type="number" id="productId" name="productId"
+           value="<%= request.getAttribute("productId") != null ? request.getAttribute("productId") : "" %>">
+    <button type="submit">Load Product</button>
+</form>
+
+<!-- Display product or error -->
+<c:if test="${not empty error}">
+    <div class="error">${error}</div>
+</c:if>
+
 <div class="product">
     <div>
-        <img src="${pageContext.request.contextPath}/images/sneaker.jpg" alt="Classic Runner Sneaker">
+        <img src="${pageContext.request.contextPath}/images/sneakers.jpg" alt="Sneaker">
     </div>
     <div>
-        <p><strong>Description:</strong> Lightweight running sneaker with breathable mesh upper and cushioned sole.</p>
-        <p><strong>Price (each):</strong> $
-            <%= request.getAttribute("unitPrice") != null ? request.getAttribute("unitPrice") : "120.00" %>
+        <h2>
+            <%= request.getAttribute("productName") != null
+                    ? request.getAttribute("productName")
+                    : "N/A" %>
+        </h2>
+
+        <p><strong>Description:</strong>
+            <%= request.getAttribute("productDescription") != null
+                    ? request.getAttribute("productDescription")
+                    : "N/A" %>
         </p>
 
+        <p><strong>Price (each):</strong> $
+            <%= request.getAttribute("unitPrice") != null
+                    ? request.getAttribute("unitPrice")
+                    : "N/A" %>
+        </p>
+
+        <!-- Quantity form -->
         <form action="${pageContext.request.contextPath}/sneaker" method="post">
+            <input type="hidden" name="unitPrice"
+                   value="<%= request.getAttribute("unitPrice") != null ? request.getAttribute("unitPrice") : "N/A" %>">
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1"
                    value="<%= request.getAttribute("quantity") != null ? request.getAttribute("quantity") : "1" %>">
             <button type="submit">Calculate</button>
         </form>
 
+        <!-- Summary -->
         <div class="summary">
             <%
-                String error = (String) request.getAttribute("error");
-                if (error != null) {
+                String err = (String) request.getAttribute("error");
+                if (err != null) {
             %>
-            <div class="error"><%= error %></div>
+            <div class="error"><%= err %></div>
             <%
             } else if (request.getAttribute("totalPrice") != null) {
             %>
@@ -63,4 +95,3 @@
 </div>
 </body>
 </html>
-
